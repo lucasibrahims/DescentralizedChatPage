@@ -42,22 +42,34 @@ body {
 }
 
 .message {
+    font-size: 15px;
+    font-weight: bold;
     background-color: dodgerblue;
     padding: 10px;
-    color: #fff;
+    color: rgba(0, 0, 0, 0.687);
     width: fit-content;
     border-radius: 10px;
     margin-bottom: 15px;
 }
 
 .user_message {
+    font-size: 15px;
+    font-weight: bold;
     margin-left: auto;
     background-color: rgb(20, 187, 118);
-    color: black;
+    color: rgba(0, 0, 0, 0.687);
     width: fit-content;
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 10px;
+    text-align: right;
+}
+.message-text {
+    color: black;
+    font-size: 20px;
+    font-style: normal;
+    font-weight:lighter;
+    padding-top: 3px;
 }
 
 .footer {
@@ -192,7 +204,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .areaRequests {
@@ -200,15 +212,15 @@ body {
     flex-direction: column;
     padding: 10px;
     background-color: rgb(8, 0, 81);
-    height: 111.15%;
+    height: 111%;
 
-    
+
 }
 
 .add-friend {
     align-items: center;
     width: 200px;
-    height: 111.15%;
+    height: 111%;
     display: flex;
     flex-direction: column;
     background-color: dodgerblue;
@@ -224,6 +236,59 @@ body {
 
 }
 
+.requestsBtn {
+    padding: 15px;
+    font-size: 15px;
+    margin-bottom: 4px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: rgb(1, 233, 233);
+    cursor: pointer;
+}
+
+.requestsBtn:hover {
+    background-color: rgb(106, 175, 175);
+}
+
+.input {
+    padding: 10px;
+    width: 150px;
+    font-size: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+#title {
+    padding: 5px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.buttons {
+    color: #fff;
+    padding: 15px;
+    width: 150px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: rgb(8, 0, 81);
+    cursor: pointer;
+    text-align: center;
+    margin: 3px;
+}
+
 .requests {
     padding: 15px;
     font-size: 20px;
@@ -236,6 +301,7 @@ body {
     display: flex;
     text-align: center;
 }
+
 
 #create-group-btn, #add-member-btn {
     color: #fff;
@@ -269,7 +335,8 @@ body {
     width: 50px;
     height: 30px;
 }
-.requestsBtnAccept:hover{
+
+.requestsBtnAccept:hover {
     background-color: white;
     cursor: pointer;
     color: black;
@@ -277,7 +344,7 @@ body {
     height: 30px;
 }
 
-.requestsBtnDeny{
+.requestsBtnDeny {
     padding: 3px;
     margin: 2px;
     font-size: 15px;
@@ -289,13 +356,15 @@ body {
     width: 50px;
     height: 30px;
 }
-.requestsBtnDeny:hover{
+
+.requestsBtnDeny:hover {
     background-color: white;
     cursor: pointer;
     color: black;
     width: 50px;
     height: 30px;
 }
+
 .input {
     padding: 10px;
     width: 150px;
@@ -337,5 +406,18 @@ body {
 .buttons:hover {
     background-color: rgb(38, 28, 129);
 }
+
+.user_date {
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+    text-align: right;
+}
+
+.date{
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+    text-align: left;
+}
+
 
 
