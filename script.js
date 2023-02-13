@@ -1,772 +1,531 @@
 //Dados Contrato
 const web3 = new Web3(ethereum);
-const contractGroupABI = [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_enderecoGroupChatImplementation",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "groupExists",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "groupId",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "idToGroupChat",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "id",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "groupName",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "idToMessagesSentBy",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "idsOfGroupsEnteredByUser",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "isAdded",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "isOwner",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "userToGroupsEntered",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "id",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "groupName",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_groupName",
-          "type": "string"
-        }
-      ],
-      "name": "createGroup",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_groupId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "_member",
-          "type": "address"
-        }
-      ],
-      "name": "addMember",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_groupId",
-          "type": "uint256"
-        }
-      ],
-      "name": "getGroupById",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "groupName",
-              "type": "string"
-            },
-            {
-              "internalType": "address[]",
-              "name": "membersAddress",
-              "type": "address[]"
-            },
-            {
-              "internalType": "string[]",
-              "name": "chatLog",
-              "type": "string[]"
-            }
-          ],
-          "internalType": "struct Group.GroupChat",
-          "name": "",
-          "type": "tuple"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getYourGroupsInfo",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "groupName",
-              "type": "string"
-            },
-            {
-              "internalType": "address[]",
-              "name": "membersAddress",
-              "type": "address[]"
-            },
-            {
-              "internalType": "string[]",
-              "name": "chatLog",
-              "type": "string[]"
-            }
-          ],
-          "internalType": "struct Group.GroupChat[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_groupId",
-          "type": "uint256"
-        }
-      ],
-      "name": "getGroupMembers",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_pubkey",
-          "type": "address"
-        }
-      ],
-      "name": "checkUserExists",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_pubkey",
-          "type": "address"
-        }
-      ],
-      "name": "getUserName",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_groupId",
-          "type": "uint256"
-        }
-      ],
-      "name": "getChatLog",
-      "outputs": [
-        {
-          "internalType": "string[]",
-          "name": "",
-          "type": "string[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_groupId",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "_msg",
-          "type": "string"
-        }
-      ],
-      "name": "sendMsgToGroup",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    }
-  ];
+const contractGroupABI  = [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_enderecoGroupChatImplementation",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "groupExists",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "groupId",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "idToGroupChat",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "groupName",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "idToMessagesSentBy",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "idsOfGroupsEnteredByUser",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "isAdded",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "isOwner",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "userToGroupsEntered",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "groupName",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_groupName",
+        "type": "string"
+      }
+    ],
+    "name": "createGroup",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_groupId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_member",
+        "type": "address"
+      }
+    ],
+    "name": "addMember",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_groupId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getGroupById",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "groupName",
+            "type": "string"
+          },
+          {
+            "internalType": "address[]",
+            "name": "membersAddress",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "senderOfEachMessage",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string[]",
+            "name": "chatLog",
+            "type": "string[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "timestampOfEachMessage",
+            "type": "uint256[]"
+          }
+        ],
+        "internalType": "struct Grupos.GroupChat",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [],
+    "name": "getYourGroupsInfo",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "groupName",
+            "type": "string"
+          },
+          {
+            "internalType": "address[]",
+            "name": "membersAddress",
+            "type": "address[]"
+          },
+          {
+            "internalType": "address[]",
+            "name": "senderOfEachMessage",
+            "type": "address[]"
+          },
+          {
+            "internalType": "string[]",
+            "name": "chatLog",
+            "type": "string[]"
+          },
+          {
+            "internalType": "uint256[]",
+            "name": "timestampOfEachMessage",
+            "type": "uint256[]"
+          }
+        ],
+        "internalType": "struct Grupos.GroupChat[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_groupId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getGroupMembers",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pubkey",
+        "type": "address"
+      }
+    ],
+    "name": "checkUserExists",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pubkey",
+        "type": "address"
+      }
+    ],
+    "name": "getUserName",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_groupId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getChatLog",
+    "outputs": [
+      {
+        "internalType": "string[]",
+        "name": "",
+        "type": "string[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_groupId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_msg",
+        "type": "string"
+      }
+    ],
+    "name": "sendMsgToGroup",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_groupId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getMessagesSentInGroup",
+    "outputs": [
+      {
+        "internalType": "string[]",
+        "name": "",
+        "type": "string[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  }
+];
+const contractGroupAddress = "0x142AEA0502Bcdbd1cAE81314239374890B366322";
+const contractGroupChatAddress = "0xee8B0d2df3B8937DC1e8697A6A0e4d1c761fC827";
 const contractGroupChatABI = [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "addressToUserPrivate",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "userName",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "pubKey",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "allMessages",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "sender",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "timestamp",
-          "type": "uint256"
-        },
-        {
-          "internalType": "string",
-          "name": "_msg",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "name": "requestChecker",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "name": "users",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "userName",
-          "type": "string"
-        },
-        {
-          "internalType": "address",
-          "name": "accountAddress",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_pubkey",
-          "type": "address"
-        }
-      ],
-      "name": "checkUserExists",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "_userName",
-          "type": "string"
-        }
-      ],
-      "name": "createAccount",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_pubkey",
-          "type": "address"
-        }
-      ],
-      "name": "getUsername",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_sendTo",
-          "type": "address"
-        }
-      ],
-      "name": "sendFriendRequest",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getPendingRequests",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "pubKey",
-              "type": "address"
-            }
-          ],
-          "internalType": "struct GroupChatImplementation.Request[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_requestIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "acceptPendingRequest",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "_requestIndex",
-          "type": "uint256"
-        }
-      ],
-      "name": "denyPendingRequest",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getDenyRequests",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "name",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "pubKey",
-              "type": "address"
-            }
-          ],
-          "internalType": "struct GroupChatImplementation.Request[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_account1",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "_account2",
-          "type": "address"
-        }
-      ],
-      "name": "alreadyFriends",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [],
-      "name": "getFriends",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "string",
-              "name": "userName",
-              "type": "string"
-            },
-            {
-              "internalType": "address",
-              "name": "accountAddress",
-              "type": "address"
-            }
-          ],
-          "internalType": "struct GroupChatImplementation.GenericUser[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "friend_key",
-          "type": "address"
-        },
-        {
-          "internalType": "string",
-          "name": "_msg",
-          "type": "string"
-        }
-      ],
-      "name": "sendMessage",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "friend_key",
-          "type": "address"
-        }
-      ],
-      "name": "readMessage",
-      "outputs": [
-        {
-          "components": [
-            {
-              "internalType": "address",
-              "name": "sender",
-              "type": "address"
-            },
-            {
-              "internalType": "uint256",
-              "name": "timestamp",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "_msg",
-              "type": "string"
-            }
-          ],
-          "internalType": "struct GroupChatImplementation.Message[]",
-          "name": "",
-          "type": "tuple[]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    }
-  ];
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pubkey",
+        "type": "address"
+      }
+    ],
+    "name": "checkUserExists",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_pubkey",
+        "type": "address"
+      }
+    ],
+    "name": "getUsername",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_account1",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_account2",
+        "type": "address"
+      }
+    ],
+    "name": "alreadyFriends",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
 
-const contractGroupAddress = "0xb0573991bc34d088964E1BB1B63DFdC21e0CAF09";
-const contractGroupChatAddress = "0x130f3234B6cdF29e1C5AD339fe9518dE1BAcbe0c";
+
+
 const instanceGroup = new web3.eth.Contract(contractGroupABI, contractGroupAddress)
 const instanceGroupChat = new web3.eth.Contract(contractGroupChatABI, contractGroupChatAddress)
+
 //\Dados Contrato
 
 //ELEMENTOS HTML
@@ -787,16 +546,22 @@ const addMemberBtn = document.getElementById("add-member-btn")
 const addMemberInput = document.getElementById("add-member-inp")
 const footer = document.getElementById("footer");
 
+
 //\ELEMENTOS HTML
 
 //DADOS
 
+let accountConnected
+let friendsList
 let chatLog = []
+let pendingRequests = []
 let requestsBtnAccept = [];
 let requestsBtnDeny = [];
 let requests = [];
+let denyRequests = [];
 let idToAdd;
 //\DADOS
+
 
 //async functions (solidity)
 
@@ -931,7 +696,7 @@ async function checkAccountLogged() {
         alert("Please Install Metamask!")
     }
 }
-let contaCriada =await checkAccountLogged()
+
 
 async function sendMessage(_to, _message) {
     if (ethereum) {
@@ -966,6 +731,7 @@ let contactsNumber;
 let friendsBtn = []
 
 //cria os botoes
+checkAccountLogged().then((contaCriada) => {
 if(contaCriada)
 {
     getGroups().then((groupsList) => {
@@ -1020,15 +786,24 @@ for (let i = 0; i < friendsList.length; i++) {
         readMessage(friendsList[i].accountAddress).then((conversa) => {
             chatLog = conversa
             let mensagem = []
+            let date = []
             for (let j = 0; j < chatLog.length; j++) {
                 mensagem[j] = document.createElement("p")
                 mensagem[j].innerHTML = chatLog[j]._msg
+                date[j] = document.createElement("p")
+                let time = new Date(chatLog[j].timestamp*1000)
+                time = time.toLocaleDateString() + " " + time.toLocaleTimeString()
+                date[j].innerHTML = time;
                 if (chatLog[j].sender == friendsList[i].accountAddress) {
                     mensagem[j].className = "message"
+                    date[j].className = "date";
                 } else {
                     mensagem[j].className = "user_message"
+                    date[j].className = "user_date"
                 }
+                
                 chatBox.appendChild(mensagem[j])
+                mensagem[j].appendChild(date[j]);
             }
 
         }).catch((error) => {
@@ -1036,7 +811,8 @@ for (let i = 0; i < friendsList.length; i++) {
         })
     })
 }
-    })})}
+    })})}})
+checkAccountLogged().then((contaCriada) => {
 if(contaCriada){
     getGroups().then((groupsList) => {
         getFriends().then((friendsList) => {   
@@ -1050,23 +826,51 @@ if(contaCriada){
                 getGroupMembers(groupsList[i-friendsList.length].id).then((members)=>{
                     friendAddress.innerHTML = members;})
                 readMessageGroup(groupsList[i-friendsList.length].id).then((conversa) => {
-                    chatLog = conversa
-                    let mensagem = []
-                    for (let j = 0; j < chatLog.length; j++) {
-                        mensagem[j] = document.createElement("p")
-                        mensagem[j].innerHTML = chatLog[j]
-                        mensagem[j].className = "message"
-                        chatBox.appendChild(mensagem[j])
-                    }
+                    getAccountLogged().then((contaLogada) =>{
 
+                        
+                        chatLog = conversa
+                        let sendersOf = groupsList[i - friendsList.length].senderOfEachMessage;
+                        let messageTimestamp = groupsList[i - friendsList.length].timestampOfEachMessage;
+                        //console.log(sendersOf);
+                        let mensagem = []
+                        let timestamp = []
+                        let nicknames = []
+                        for (let j = 0; j < chatLog.length; j++) {
+                            console.log(sendersOf[j])
+                            nicknames[j] = document.createElement("p")
+                            getUserName(sendersOf[j]).then((userName)=>{
+                                nicknames[j].innerHTML = userName;
+                            nicknames[j].className = "message"
+                            mensagem[j] = document.createElement("p")
+                            mensagem[j].innerHTML = chatLog[j]
+                            mensagem[j].className = "message-text"
+                            nicknames[j].appendChild(mensagem[j]);
+                            timestamp[j] = document.createElement("p")
+                            let time = new Date(messageTimestamp[j]*1000)
+                            time = time.toLocaleDateString() + " " + time.toLocaleTimeString()
+                            timestamp[j].innerHTML = time
+                            timestamp[j].className = "date";
+                            nicknames[j].appendChild(timestamp[j]);
+                            if (sendersOf[j].toUpperCase() == contaLogada.toUpperCase()) {
+                                nicknames[j].className = "user_message"
+                                timestamp[j].className = "user_date";
+                            }
+
+                            chatBox.appendChild(nicknames[j])
+                        })}
+
+                    }).catch((error)=>{console.log(error)})
+                    
         }).catch((error) => {
             console.log(error);
         })
     })
 }
 })
-})}
+})}})
 //cria os botoes request
+checkAccountLogged().then((contaCriada) => {
 if(contaCriada){
     getDenyRequests().then((denyRequests) => {
     getPendingRequests().then((pendingRequests) => {
@@ -1138,7 +942,7 @@ for (let i = 0; i < requests.length; i++) {
         });
     });
 }
-})})}
+})})}})
 sendFriendRequestBtn.addEventListener("click", () => {
     sendFriendRequest(sendFriendrequestInput.value).then((pedido) => {
         alert("Pedido enviado!")
@@ -1260,6 +1064,7 @@ async function readMessageGroup(id) {
 }
 
 
+
 async function sendMessageToGroup(_id, _message) {
     if (ethereum) {
         try {
@@ -1271,5 +1076,33 @@ async function sendMessageToGroup(_id, _message) {
         }
     } else {
         alert("Please Install Metamask")
+    }
+}
+async function getMessagesSentInGroup(_groupId){
+    if (ethereum) {
+        try {
+            let mensagensEnviadas = await instanceGroup.methods.getMessagesSentInGroup(_groupId).call()
+            return mensagensEnviadas
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        alert("Please Install Metamask")
+        
+    }
+}
+
+async function getUserName (_address) {
+    if (ethereum) {
+        try {
+            let accounts = await ethereum.request({ method: "eth_requestAccounts" })
+            let userName = await instanceGroup.methods.getUserName(_address).call({ from: accounts[0] })
+            return userName;
+        } catch (error) {
+            console.log(error);
+        }
+    } else {
+        alert("Please Install Metamask")
+        
     }
 }
